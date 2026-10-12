@@ -1,0 +1,76 @@
+ delete mode 100644 apps/backend/tsconfig.json
+ delete mode 100644 apps/frontend/tsconfig.json
+ create mode 100644 architecture/API_CONTRACT.md
+ create mode 100644 architecture/DECISIONS.md
+ create mode 100644 architecture/DEPLOYMENT_GUIDE.md
+ create mode 100644 architecture/PROJECT_RULES.md
+ create mode 100644 architecture/README.md
+ create mode 100644 architecture/SYSTEM_ARCHITECTURE.md
+ create mode 100644 architecture/TEST_STRATEGY.md
+ rename docs/verification-limitations.md => architecture/VERIFICATION_LIMITATIONS.md (100%)
+ create mode 100644 architecture/VERIFICATION_RULESET.md
+ rename {apps/backend => backend}/package.json (100%)
+ rename {apps/backend => backend}/src/index.ts (100%)
+ rename {apps/backend => backend}/src/lib/requestValidation.ts (100%)
+ rename {apps/backend => backend}/src/lib/response.ts (100%)
+ rename {apps/backend => backend}/src/middleware/cors.ts (100%)
+ rename {apps/backend => backend}/src/middleware/errorHandler.ts (100%)
+ rename {apps/backend => backend}/src/routes/health.ts (100%)
+ rename {apps/backend => backend}/src/routes/verify.ts (100%)
+ rename {apps/backend => backend}/tests/health.test.ts (100%)
+ rename {apps/backend => backend}/tests/verify.test.ts (100%)
+ create mode 100644 backend/tsconfig.json
+ rename {apps/backend => backend}/wrangler.jsonc (100%)
+ delete mode 100644 docs/architecture.md
+ delete mode 100644 docs/deployment.md
+ rename {apps/frontend => frontend}/index.html (100%)
+ rename {apps/frontend => frontend}/package.json (100%)
+ rename {apps/frontend => frontend}/postcss.config.js (100%)
+ rename {apps/frontend => frontend}/public/icon.svg (100%)
+ rename {apps/frontend => frontend}/public/manifest.json (100%)
+ rename {apps/frontend => frontend}/public/sw.js (100%)
+ rename {apps/frontend => frontend}/src/App.tsx (100%)
+ rename {apps/frontend => frontend}/src/components/layout/Banner.tsx (100%)
+ rename {apps/frontend => frontend}/src/components/layout/Footer.tsx (100%)
+ rename {apps/frontend => frontend}/src/components/layout/Header.tsx (100%)
+ rename {apps/frontend => frontend}/src/components/ui/Badge.tsx (100%)
+ rename {apps/frontend => frontend}/src/components/ui/Button.tsx (100%)
+ rename {apps/frontend => frontend}/src/components/ui/Card.tsx (100%)
+ rename {apps/frontend => frontend}/src/features/verification/components/FindingCard.tsx (100%)
+ rename {apps/frontend => frontend}/src/features/verification/components/ScenariosLimitationsView.tsx (100%)
+ rename {apps/frontend => frontend}/src/features/verification/components/VariantGenerator.tsx (100%)
+ rename {apps/frontend => frontend}/src/features/verification/components/VerificationReportView.tsx (100%)
+ rename {apps/frontend => frontend}/src/features/verification/hooks/useVerification.ts (100%)
+ rename {apps/frontend => frontend}/src/features/verification/services/verificationService.ts (100%)
+ rename {apps/frontend => frontend}/src/features/warnings/components/MasterWarningForm.tsx (100%)
+ rename {apps/frontend => frontend}/src/features/warnings/components/ProjectOverview.tsx (100%)
+ rename {apps/frontend => frontend}/src/features/warnings/data/fictionalPresets.ts (100%)
+ rename {apps/frontend => frontend}/src/main.tsx (100%)
+ rename {apps/frontend => frontend}/src/styles/index.css (100%)
+ rename {apps/frontend => frontend}/tailwind.config.js (100%)
+ rename {apps/frontend => frontend}/tests/App.test.tsx (100%)
+ rename {apps/frontend => frontend}/tests/setup.ts (100%)
+ rename {apps/frontend => frontend}/tests/verificationService.test.ts (100%)
+ create mode 100644 frontend/tsconfig.json
+ rename {apps/frontend => frontend}/vite.config.ts (85%)
+ rename {packages => shared}/verification-core/package.json (100%)
+ rename {packages => shared}/verification-core/src/constants.ts (100%)
+ rename {packages => shared}/verification-core/src/extractors/criticalFacts.ts (100%)
+ rename {packages => shared}/verification-core/src/index.ts (100%)
+ rename {packages => shared}/verification-core/src/schemas.ts (100%)
+ rename {packages => shared}/verification-core/src/templates/templateRenderer.ts (100%)
+ rename {packages => shared}/verification-core/src/types.ts (100%)
+ rename {packages => shared}/verification-core/src/validators/actionValidator.ts (100%)
+ rename {packages => shared}/verification-core/src/validators/deadlineValidator.ts (100%)
+ rename {packages => shared}/verification-core/src/validators/locationValidator.ts (100%)
+ rename {packages => shared}/verification-core/src/validators/prohibitionValidator.ts (100%)
+ rename {packages => shared}/verification-core/src/validators/quantityValidator.ts (100%)
+ rename {packages => shared}/verification-core/src/verification/compareFacts.ts (100%)
+ rename {packages => shared}/verification-core/src/verification/verifyWarning.ts (100%)
+ rename {packages => shared}/verification-core/tests/actionValidator.test.ts (100%)
+ rename {packages => shared}/verification-core/tests/deadlineValidator.test.ts (100%)
+ rename {packages => shared}/verification-core/tests/fixtures.ts (100%)
+ rename {packages => shared}/verification-core/tests/prohibitionValidator.test.ts (100%)
+ rename {packages => shared}/verification-core/tests/quantityValidator.test.ts (100%)
+ rename {packages => shared}/verification-core/tests/verifyWarning.test.ts (100%)
+ rename {packages => shared}/verification-core/tsconfig.json (100%)

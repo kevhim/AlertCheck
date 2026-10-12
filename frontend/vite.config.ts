@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@alertcheck/verification-core': path.resolve(__dirname, '../../packages/verification-core/src/index.ts')
+      '@alertcheck/verification-core': path.resolve(__dirname, '../shared/verification-core/src/index.ts')
     }
   },
   server: {

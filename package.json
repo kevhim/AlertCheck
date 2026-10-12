@@ -2,17 +2,21 @@
   "name": "alertcheck-monorepo",
   "version": "1.0.0",
   "private": true,
-  "description": "AlertCheck - Free-tier, offline-capable critical-information integrity checker for emergency warnings",
+  "description": "AlertCheck - deterministic critical-information integrity checker for emergency warnings",
   "workspaces": [
-    "packages/*",
-    "apps/*"
+    "frontend",
+    "backend",
+    "shared/*"
   ],
   "scripts": {
     "build": "npm run --workspace=@alertcheck/verification-core build && npm run --workspace=@alertcheck/backend build && npm run --workspace=@alertcheck/frontend build",
-    "test": "npm run --workspace=@alertcheck/verification-core test && npm run --workspace=@alertcheck/backend test && npm run --workspace=@alertcheck/frontend test",
-    "typecheck": "npm run --workspace=@alertcheck/verification-core typecheck && npm run --workspace=@alertcheck/backend typecheck && npm run --workspace=@alertcheck/frontend typecheck",
+    "build:frontend": "npm run --workspace=@alertcheck/verification-core build && npm run --workspace=@alertcheck/frontend build",
+    "build:backend": "npm run --workspace=@alertcheck/verification-core build && npm run --workspace=@alertcheck/backend build",
+    "test": "npm run --workspace=@alertcheck/verification-core build && npm run --workspace=@alertcheck/verification-core test && npm run --workspace=@alertcheck/backend test && npm run --workspace=@alertcheck/frontend test",
+    "typecheck": "npm run --workspace=@alertcheck/verification-core build && npm run --workspace=@alertcheck/verification-core typecheck && npm run --workspace=@alertcheck/backend typecheck && npm run --workspace=@alertcheck/frontend typecheck",
     "dev:frontend": "npm run --workspace=@alertcheck/frontend dev",
-    "dev:backend": "npm run --workspace=@alertcheck/backend dev"
+    "dev:backend": "npm run --workspace=@alertcheck/backend dev",
+    "deploy:backend": "npm run --workspace=@alertcheck/verification-core build && npm run --workspace=@alertcheck/backend deploy"
   },
   "keywords": [
     "emergency-alerts",

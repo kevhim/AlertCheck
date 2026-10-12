@@ -38,3 +38,7 @@ Thumbs.db
 .cache/
 .temp/
 *.tsbuildinfo
+
+# Archives & Backups
+zips/
+*.zip
