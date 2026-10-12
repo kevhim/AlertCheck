@@ -10,7 +10,19 @@ export interface VerificationServiceResult {
   fallbackReason?: string;
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8787';
+export const DEFAULT_PRODUCTION_API_URL = 'https://alertcheck.kevinhatoshi.workers.dev';
+
+/**
+ * Resolves API Base URL: defaults to production Cloudflare Worker URL,
+ * but allows override via VITE_API_BASE_URL when non-empty.
+ */
+export function getApiBaseUrl(): string {
+  const envUrl = import.meta.env.VITE_API_BASE_URL;
+  if (typeof envUrl === 'string' && envUrl.trim().length > 0) {
+    return envUrl.trim();
+  }
+  return DEFAULT_PRODUCTION_API_URL;
+}
 
 /**
  * Executes verification via Cloudflare Worker API with automatic seamless local browser fallback.
@@ -18,11 +30,12 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8787
 export async function executeVerification(
   request: VerifyRequest
 ): Promise<VerificationServiceResult> {
+  const apiBaseUrl = getApiBaseUrl();
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3500); // 3.5s timeout for fast offline switch
 
-    const response = await fetch(`${API_BASE_URL}/api/verify`, {
+    const response = await fetch(`${apiBaseUrl}/api/verify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

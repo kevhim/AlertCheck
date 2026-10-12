@@ -26,7 +26,7 @@ const verifyPayload: VerifyRequest = {
 
 describe('CORS Configuration and Allowlist Middleware', () => {
   const envWithOrigins = {
-    ALLOWED_ORIGIN: 'https://alertcheck-web.pages.dev,http://localhost:5173,http://localhost:4173',
+    ALLOWED_ORIGIN: 'https://alertcheck-web.pages.dev,http://localhost:5173,http://127.0.0.1:5173',
   };
 
   describe('Production Frontend Origin (https://alertcheck-web.pages.dev)', () => {
@@ -96,18 +96,30 @@ describe('CORS Configuration and Allowlist Middleware', () => {
       expect(response.headers.get('Vary')).toBe('Origin');
     });
 
-    it('allows localhost:4173 (preview port) on GET /api/health', async () => {
-      const request = new Request('http://localhost:8787/api/health', {
-        method: 'GET',
+    it('allows 127.0.0.1:5173 development origin on GET /api/health and preflight', async () => {
+      const preflightReq = new Request('http://localhost:8787/api/health', {
+        method: 'OPTIONS',
         headers: {
-          Origin: 'http://localhost:4173',
+          Origin: 'http://127.0.0.1:5173',
         },
       });
 
       // @ts-expect-error test ctx
-      const response = await worker.fetch(request, envWithOrigins, {});
-      expect(response.status).toBe(200);
-      expect(response.headers.get('Access-Control-Allow-Origin')).toBe('http://localhost:4173');
+      const preflightRes = await worker.fetch(preflightReq, envWithOrigins, {});
+      expect(preflightRes.status).toBe(204);
+      expect(preflightRes.headers.get('Access-Control-Allow-Origin')).toBe('http://127.0.0.1:5173');
+
+      const getReq = new Request('http://localhost:8787/api/health', {
+        method: 'GET',
+        headers: {
+          Origin: 'http://127.0.0.1:5173',
+        },
+      });
+
+      // @ts-expect-error test ctx
+      const getRes = await worker.fetch(getReq, envWithOrigins, {});
+      expect(getRes.status).toBe(200);
+      expect(getRes.headers.get('Access-Control-Allow-Origin')).toBe('http://127.0.0.1:5173');
     });
 
     it('allows localhost development even when env.ALLOWED_ORIGIN is undefined (default allowlist)', async () => {

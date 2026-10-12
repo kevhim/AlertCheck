@@ -85,5 +85,40 @@ describe('verificationService frontend resilience', () => {
     const result = await executeVerification(request);
     expect(result.mode).toBe('cloudflare_worker');
     expect(result.report.status).toBe('no_mismatch_detected');
+    expect(globalThis.fetch).toHaveBeenCalledWith(
+      expect.stringContaining('/api/verify'),
+      expect.objectContaining({ method: 'POST' })
+    );
+  });
+});
+
+describe('getApiBaseUrl API configuration resolution', () => {
+  const originalEnv = import.meta.env.VITE_API_BASE_URL;
+
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('defaults to production Cloudflare Worker URL when VITE_API_BASE_URL is absent or empty', async () => {
+    import.meta.env.VITE_API_BASE_URL = '';
+    const { getApiBaseUrl, DEFAULT_PRODUCTION_API_URL } = await import(
+      '../src/features/verification/services/verificationService'
+    );
+    expect(getApiBaseUrl()).toBe('https://alertcheck.kevinhatoshi.workers.dev');
+    expect(DEFAULT_PRODUCTION_API_URL).toBe('https://alertcheck.kevinhatoshi.workers.dev');
+
+    // Restore
+    import.meta.env.VITE_API_BASE_URL = originalEnv;
+  });
+
+  it('respects an explicit VITE_API_BASE_URL override for development or custom environments', async () => {
+    import.meta.env.VITE_API_BASE_URL = 'http://localhost:8787';
+    const { getApiBaseUrl } = await import(
+      '../src/features/verification/services/verificationService'
+    );
+    expect(getApiBaseUrl()).toBe('http://localhost:8787');
+
+    // Restore
+    import.meta.env.VITE_API_BASE_URL = originalEnv;
   });
 });
