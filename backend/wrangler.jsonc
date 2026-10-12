@@ -4,6 +4,6 @@
   "main": "src/index.ts",
   "compatibility_date": "2025-01-01",
   "vars": {
-    "ALLOWED_ORIGIN": "http://localhost:5173"
+    "ALLOWED_ORIGIN": "https://alertcheck-web.pages.dev,http://localhost:5173,http://localhost:4173"
   }
 }
