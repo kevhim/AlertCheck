@@ -13,3 +13,12 @@ ReactDOM.createRoot(rootElement).render(
     <App />
   </React.StrictMode>
 );
+
+// Register service worker for offline shell caching and reopening
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch((err) => {
+      console.info('[AlertCheck] Service worker registration skipped:', err);
+    });
+  });
+}
