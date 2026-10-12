@@ -1,0 +1,23 @@
+{
+  "name": "@alertcheck/backend",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker backend API for AlertCheck verification engine",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@alertcheck/verification-core": "*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8",
+    "wrangler": "^3.107.2"
+  }
+}
